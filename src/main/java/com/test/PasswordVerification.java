@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -40,6 +42,9 @@ public class PasswordVerification extends HttpServlet {
 		String user="root";
 		String pass1="Vishwa@1107";
 		
+		HttpSession session=request.getSession();
+		session.setAttribute("p", pass);
+		
 		String query = "Select * from details where passwordl=?";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -52,6 +57,7 @@ public class PasswordVerification extends HttpServlet {
 			ResultSet rs = st.executeQuery();
 			
 			if(rs.next()) {
+				response.getWriter().println("<h1> Welcome   "+session.getAttribute("e")+" and   "+session.getAttribute("p")+"</h1>");
 		 		RequestDispatcher rd=request.getRequestDispatcher("home.html");
 		 		rd.include(request, response);
 			}else {

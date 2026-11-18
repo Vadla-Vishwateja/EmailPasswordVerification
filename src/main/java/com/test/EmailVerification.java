@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -35,7 +37,10 @@ public class EmailVerification extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");
 		
+		HttpSession session=request.getSession();
 		String email=request.getParameter("email");
+
+		
 		String url="jdbc:mysql://localhost:3306/registration";
 		String user="root";
 		String pass1="Vishwa@1107";
@@ -52,6 +57,7 @@ public class EmailVerification extends HttpServlet {
 			ResultSet rs = st.executeQuery();
 			
 			if(rs.next()) {
+				session.setAttribute("e", email);
 		 		RequestDispatcher rd=request.getRequestDispatcher("pass.html");
 		 		rd.include(request, response);
 			}else {
