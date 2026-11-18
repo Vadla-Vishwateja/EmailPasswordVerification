@@ -71,6 +71,7 @@ public class EmailVerification extends HttpServlet {
 			conn.close();
 		
 		} catch (Exception e) {
+			
 			out.println("<h2>"+e.getMessage()+"</h2>");
 		}
 
