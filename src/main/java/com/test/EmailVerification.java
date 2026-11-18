@@ -34,6 +34,7 @@ public class EmailVerification extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		PrintWriter out=response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");
 		
@@ -46,6 +47,7 @@ public class EmailVerification extends HttpServlet {
 		String pass1="Vishwa@1107";
 		
 		String query = "Select * from details where email=?";
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn=DriverManager.getConnection(url, user, pass1);
@@ -61,7 +63,7 @@ public class EmailVerification extends HttpServlet {
 		 		RequestDispatcher rd=request.getRequestDispatcher("pass.html");
 		 		rd.include(request, response);
 			}else {
-				response.getWriter().println("</h3>Not a valid email...</h3>");
+				response.getWriter().println("</h3>Not a valid email..</h3>");
 				RequestDispatcher rd=request.getRequestDispatcher("index.html");
 		 		rd.include(request, response);
 			}
