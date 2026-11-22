@@ -59,6 +59,7 @@ public class PasswordVerification extends HttpServlet {
 			if(rs.next()) {
 				
 				response.getWriter().println("<h1> Welcome   "+session.getAttribute("e")+" and   "+session.getAttribute("p")+"</h1>");
+				
 		 		RequestDispatcher rd=request.getRequestDispatcher("home.html");
 		 		rd.include(request, response);
 			}else {
