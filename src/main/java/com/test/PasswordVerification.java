@@ -67,6 +67,7 @@ public class PasswordVerification extends HttpServlet {
 			}else {
 				
 				response.getWriter().println("</h3>Not a valid Password..</h3>");
+				
 				RequestDispatcher rd=request.getRequestDispatcher("pass.html");
 		 		rd.include(request, response);
 			}
