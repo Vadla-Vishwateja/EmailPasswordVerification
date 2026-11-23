@@ -46,6 +46,7 @@ public class PasswordVerification extends HttpServlet {
 		session.setAttribute("p", pass);
 		
 		String query = "Select * from details where passwordl=?";
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
